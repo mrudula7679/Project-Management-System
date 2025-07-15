@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+
+<h2>Assign Guides & Final Approval</h2>
+
+<% if (projects && projects.length > 0) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Title</th>
+        <th>Guide</th>
+        <th>Assign Guide</th>
+        <th>Final Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% projects.forEach(project => { %>
+        <tr>
+          <td><%= project.student.name %></td>
+          <td><%= project.title %></td>
+          <td><%= project.guide ? project.guide.name : 'Not Assigned' %></td>
+          <td>
+            <form action="/hod/assign-guide" method="POST">
+              <input type="hidden" name="studentId" value="<%= project.student._id %>">
+              <select name="guideId" required>
+                <option value="">-- Select Guide --</option>
+                <% guides.forEach(guide => { %>
+                  <option value="<%= guide._id %>"><%= guide.name %></option>
+                <% }) %>
+              </select>
+              <button class="btn" type="submit">Assign</button>
+            </form>
+          </td>
+          <td><%= project.finalStatus %></td>
+          <td>
+            <% if (project.finalStatus === 'Pending') { %>
+              <form action="/hod/final-approval" method="POST" style="display:inline;">
+                <input type="hidden" name="projectId" value="<%= project._id %>">
+                <input type="hidden" name="status" value="Approved">
+                <button class="btn" type="submit">Approve</button>
+              </form>
+              <form action="/hod/final-approval" method="POST" style="display:inline;">
+                <input type="hidden" name="projectId" value="<%= project._id %>">
+                <input type="hidden" name="status" value="Rejected">
+                <button class="btn" type="submit" style="background:#991b1b;">Reject</button>
+              </form>
+            <% } else { %>
+              <em><%= project.finalStatus %></em>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No projects submitted yet.</p>
+<% } %>
+
+<%- include('../partials/footer') %>
