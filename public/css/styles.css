@@ -1,0 +1,100 @@
+/* styles.css */
+
+:root {
+  --primary: #1e3a8a;
+  --accent: #3b82f6;
+  --bg: #f9f9f9;
+  --text: #111827;
+  --light-text: #6b7280;
+  --border: #d1d5db;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+header,
+footer {
+  background: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+h1, h2 {
+  color: var(--primary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #172554;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: white;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.alert-error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
