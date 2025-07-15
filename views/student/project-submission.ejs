@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<h2>Project Submission</h2>
+
+<form action="/student/project-submission" method="POST">
+  <label for="title">Project Title:</label>
+  <input type="text" id="title" name="title" required>
+
+  <label for="problemStatement">Problem Statement:</label>
+  <textarea id="problemStatement" name="problemStatement" rows="5" required></textarea>
+
+  <button type="submit" class="btn">Submit Project</button>
+</form>
+
+<%- include('../partials/footer') %>

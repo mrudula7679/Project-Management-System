@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<h2>Guide Preference Submission</h2>
+
+<form action="/student/guide-preference" method="POST">
+  <label for="preferences">Enter Guide IDs (comma separated, ordered by preference):</label>
+  <input type="text" id="preferences" name="preferences" placeholder="e.g., 648...1,648...2" required>
+  
+  <p style="font-size: 0.9em; color: var(--light-text);">(*You’ll enter actual ObjectIds manually or we can add dropdowns later.)</p>
+
+  <button type="submit" class="btn">Submit Preferences</button>
+</form>
+
+<%- include('../partials/footer') %>
