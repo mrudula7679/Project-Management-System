@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<h2>Review Assigned Projects</h2>
+
+<% if (projects && projects.length > 0) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Title</th>
+        <th>Problem Statement</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% projects.forEach(project => { %>
+        <tr>
+          <td><%= project.student.name %></td>
+          <td><%= project.title %></td>
+          <td><%= project.problemStatement %></td>
+          <td><%= project.status %></td>
+          <td>
+            <% if (project.status === 'Pending') { %>
+              <form action="/guide/update-status" method="POST" style="display:inline;">
+                <input type="hidden" name="projectId" value="<%= project._id %>">
+                <input type="hidden" name="status" value="Approved">
+                <button class="btn" type="submit">Approve</button>
+              </form>
+              <form action="/guide/update-status" method="POST" style="display:inline;">
+                <input type="hidden" name="projectId" value="<%= project._id %>">
+                <input type="hidden" name="status" value="Rejected">
+                <button class="btn" type="submit" style="background:#991b1b;">Reject</button>
+              </form>
+            <% } else { %>
+              <em>No actions available</em>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No projects assigned yet.</p>
+<% } %>
+
+<%- include('../partials/footer') %>
